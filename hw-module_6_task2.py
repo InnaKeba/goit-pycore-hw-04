@@ -11,7 +11,7 @@ cats_info = [
     "60b90c2413067a15887e1ae2,Vika,1",
     "60b90c2e13067a15887e1ae3,Barsik,2",
     "60b90c3b13067a15887e1ae4,Simon,12",
-    "60b90c4613067a15887e1ae5,Tessi,5"]
+    "60b90c4613067a15887e1ae5,Tessi,5а"] # додано помилковий рядок кота Tessi, а саме вік = 5а, для перевірки обробки помилок except
 
 with open ("cats_data.txt", "w", encoding="utf-8") as file:  # Створення файлу з даними про котиків
     for entry in cats_info:
@@ -26,7 +26,8 @@ def get_cats_info(path):
             try:
                 cat_id, name, age = entry.split(",")  # Розділення по комі на id котиків, імені та віку 
                 cats_list.append({"id": cat_id, "name": name, "age": int(age)})  # Створення словника з інформацією про котика
-            except ValueError:  
+            except ValueError: 
+                print(f"Пропущено рядок: вік не є числом → {entry}") 
                 continue 
         return cats_list
     except FileNotFoundError:
@@ -35,3 +36,5 @@ def get_cats_info(path):
     except Exception as e:
         print(f"Сталася помилка при читанні файлу: {e}")
         return []
+cats_info = get_cats_info("cats_data.txt")
+print(cats_info)
