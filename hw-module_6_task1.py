@@ -17,7 +17,7 @@ def total_salary(path):
     try:
         with open(path, encoding="utf-8") as file:
             text_from_salary_data = file.read() # Читання вмісту файлу txt
-        entries = text_from_salary_data.strip().split()  # Розбиваємо текст за пробілами, далі — за комами
+        entries = text_from_salary_data.strip().split()  # Розбиваємо текст за пробілами, далі за комами
         salaries = []
         for entry in entries:
             try:
